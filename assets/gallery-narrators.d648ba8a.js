@@ -66,7 +66,7 @@ const z={
         ],
         filter:[
           {active:!1,type:"filterExtras",label:"Number of books",key:"books",range:[1,function(){let a=_.get(r.$store.state,r.collectionSource),e=_.maxBy(a,function(t){if(t.books)return t.books.length});return e?e.books.length:1}()],rangeMinDist:0,rangeSuffix:"",rangeMin:function(){return 1},rangeMax:function(){let a=_.get(r.$store.state,r.collectionSource),e=_.maxBy(a,function(t){if(t.books)return t.books.length});return e?e.books.length:1},condition:function(a){if(a.books){let e=this.range[0],t=this.range[1];return a.books.length>=e&&a.books.length<=t}}},
-          {active:!0,type:"select",label:"Include Only",key:"gender",get value(){return r.filters.gender},set value(a){r.filters.gender=a},options:["","m","f"],labels:{"":"Any","m":"Male narrators","f":"Female narrators"},condition:function(a){return r.filters.gender===""||a.gender===r.filters.gender;}},
+          {active:!0,type:"select",label:"Include Only",key:"gender",get value(){return r.filters.gender},set value(a){r.filters.gender=a},options:["","m","f"],labels:{"":"Any","m":"Male narrators","f":"Female narrators"},condition:function(a){return r.filters.gender===""||a.gender===r.filters.gender}},
           {active:!0,type:"checkbox",label:"Popular narrators only",key:"popular",get value(){return r.filters.popular},set value(a){r.filters.popular=a},condition:function(a){return!r.filters.popular||a.popular===!0}}
         ],
         sort:[
