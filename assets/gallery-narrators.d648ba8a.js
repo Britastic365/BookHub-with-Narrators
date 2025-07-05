@@ -8,7 +8,11 @@ const z={
       collectionSource:"pageCollection",
       listReady:!1,
       pageTitle:"Narrators",
-      pageSubTitle:null
+      pageSubTitle:null,
+      filters:{
+        gender:"",
+        popular:!1
+      }
     };
   },
   computed:{
@@ -59,8 +63,8 @@ const z={
         ],
         filter:[
           {active:!1,type:"filterExtras",label:"Number of books",key:"books",range:[1,function(){let a=_.get(r.$store.state,r.collectionSource),e=_.maxBy(a,function(t){if(t.books)return t.books.length});return e?e.books.length:1}()],rangeMinDist:0,rangeSuffix:"",rangeMin:function(){return 1},rangeMax:function(){let a=_.get(r.$store.state,r.collectionSource),e=_.maxBy(a,function(t){if(t.books)return t.books.length});return e?e.books.length:1},condition:function(a){if(a.books){let e=this.range[0],t=this.range[1];return a.books.length>=e&&a.books.length<=t}}},
-          {active:!0,type:"select",label:"Include Only",key:"gender",value:"",options:["","m","f"],labels:{"":"Any","m":"Male narrators","f":"Female narrators"},condition:function(a){if(this.value==="")return true;return a.gender===this.value;}},
-          {active:!0,type:"checkbox",label:"Popular narrators only",key:"popular",value:!1,condition:function(a){return this.value===!0?a.popular===!0:!0}}
+          {active:!0,type:"select",label:"Include Only",key:"gender",get value(){return r.filters.gender},set value(a){r.filters.gender=a},options:["","m","f"],labels:{"":"Any","m":"Male narrators","f":"Female narrators"},condition:function(a){return r.filters.gender===""||a.gender===r.filters.gender;}},
+          {active:!0,type:"checkbox",label:"Popular narrators only",key:"popular",get value(){return r.filters.popular},set value(a){r.filters.popular=a},condition:function(a){return!r.filters.popular||a.popular===!0}}
         ],
         sort:[
           {active:!1,key:"randomize",label:"Randomize",type:"sortExtras",tippy:"Ignores sorting and randomizes instead unless there's an active search."},
@@ -73,41 +77,6 @@ const z={
       this.$setListRenderingOpts(s);
     }
   }
-},
-M={key:0,class:"books-total",content:"Total number of books with this narrator."};
+};
 
-function D(r,s,a,e,t,n){
-  const l=v,g=$("router-link"),f=k,b=C("tippy");
-  return r.listReady?(
-    i(),
-    c("div",{key:0,id:"ale-narrators",class:"box-layout-wrapper",style:m(n.optionsOpenMargin),ref:"wrapper"},[
-      u(l,{collectionSource:r.collectionSource},null,8,["collectionSource"]),
-      p("div",{style:m(n.galleryStyle),class:"page-content"},[
-        (i(!0),
-        c(N,null,
-          O(r.$store.getters.filteredCollection,(o,L)=>(
-            i(),
-            R(f,{class:"single-box","data-name":o.name,key:"narrators:"+o.name},{
-              default:h(()=>[
-                u(g,{to:{name:"narrator",params:{narrator:o.url},query:{subPageSource:r.subPageSource.name}}},{
-                  default:h(()=>[
-                    p("h2",null,[
-                      y(o.name),
-                      o.popular?p("span",{class:"popular-star"},"⭐"):d("",!0)
-                    ]),
-                    o.books&&o.books.length?B((i(),c("div",M,[T(y(o.books.length),1)])),[[b,{placement:"right"}]]):d("",!0)
-                  ]),
-                  _:2
-                },1032,["to"])
-              ]),
-              _:2
-            },1032,["data-name"])
-          )),128)
-        )
-      ],4)
-    ],4)
-  ):d("",!0)
-}
-
-const W=w(z,[["render",D],["__scopeId","data-v-a99a4676"]]);
-export{W as default};
+export default z;
