@@ -2,7 +2,7 @@ import{_ as k}from"./gallery-lazy.9238549d.js";import{a as v}from"./gallery-sear
 
 const z={
   name:"aleNarrators",
-  mixins:[S,x],
+  mixins:[x],
   data:function(){
     return{
       collectionSource:"pageCollection",
