@@ -72,42 +72,38 @@ const z={
       };
       this.$setListRenderingOpts(s);
     }
-  }
-},
-M={key:0,class:"books-total",content:"Total number of books with this narrator."};
+  },
+  render(h){
+    const f = this,
+          g = f.$store.getters.collection;
 
-function D(r,s,a,e,t,n){
-  const l=v,g=$("router-link"),f=k,b=C("tippy");
-  return r.listReady?(
-    i(),
-    c("div",{key:0,id:"ale-narrators",class:"box-layout-wrapper",style:m(n.optionsOpenMargin),ref:"wrapper"},[
-      u(l,{collectionSource:r.collectionSource},null,8,["collectionSource"]),
-      p("div",{style:m(n.galleryStyle),class:"page-content"},[
-        (i(!0),
-        c(N,null,
-          O(r.$store.getters.collection,(o,L)=>(
-            i(),
-            R(f,{class:"single-box","data-name":o.name,key:"narrators:"+o.name},{
-              default:h(()=>[
-                u(g,{to:{name:"narrator",params:{narrator:o.url},query:{subPageSource:r.subPageSource.name}}},{
-                  default:h(()=>[
-                    p("h2",null,[
-                      y(o.name),
-                      o.popular ? p("span", { class: "popular-star" }, "⭐") : d("",!0)
-                    ]),
-                    o.books&&o.books.length?B((i(),c("div",M,[T(y(o.books.length),1)])),[[b,{placement:"right"}]]):d("",!0)
-                  ]),
-                  _:2
-                },1032,["to"])
+    return f.listReady ? h("div", { attrs: { id: "ale-narrators" }, class: "box-layout-wrapper", style: f.optionsOpenMargin, ref: "wrapper" }, [
+      h(v, { props: { collectionSource: f.collectionSource } }),
+      h("div", { class: "page-content", style: f.galleryStyle },
+        g.map(function(o) {
+          return h(k, { class: "single-box", attrs: { "data-name": o.name }, key: "narrators:" + o.name }, [
+            h("router-link", {
+              attrs: {
+                to: {
+                  name: "narrator",
+                  params: { narrator: o.url },
+                  query: { subPageSource: f.subPageSource.name }
+                }
+              }
+            }, [
+              h("h2", [
+                o.name,
+                o.popular ? h("span", { class: "popular-star" }, "⭐") : null
               ]),
-              _:2
-            },1032,["data-name"])
-          )),128)
-        )
-      ],4)
-    ],4)
-  ):d("",!0)
-}
+              o.books && o.books.length ? h("div", { class: "books-total", directives: [{ name: "tippy", value: { placement: "right" } }] }, [
+                o.books.length
+              ]) : null
+            ])
+          ]);
+        })
+      )
+    ]) : null;
+  }
+};
 
-const W=w(z,[["render",D],["__scopeId","data-v-a99a4676"]]);
-export{W as default};
+export default z;
