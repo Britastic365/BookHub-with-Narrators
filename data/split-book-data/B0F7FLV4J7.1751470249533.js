@@ -1,0 +1,1 @@
+window.bookSummaryJSON = "PsyChic in Seattle is the first book in a series of the adventures of Tangie Seraphina as she hunts for missing persons and becomes psyched on romance with Walter Cunningham, her friend--who becomes her lover, her confidante and soul mate"; 

@@ -1,0 +1,1 @@
+window.bookSummaryJSON = "<p>An all-star line-up of children’s book authors, including Holly Black, Justine Larbalestier, Libba Bray, and Maureen Johnson, debate the question, “Which are better: zombies or unicorns?”</p>"; 

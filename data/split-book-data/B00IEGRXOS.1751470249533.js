@@ -1,0 +1,1 @@
+window.bookSummaryJSON = "<p>Her legacy had been as much a curse as a blessing, so Anastasia Donovan had learned to keep it hidden. But when single dad Boone Sawyer swept into her heart, she longed to reveal everything despite her fear of the consequences. Then fate stepped in…</p>"; 

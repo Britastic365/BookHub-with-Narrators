@@ -1,0 +1,1 @@
+window.bookSummaryJSON = "<p>Stephanie Hudson is the author of the <i>Afterlife Saga</i>, a dark and twisted series which can’t be contained in just one book! Stephanie joins Robin Morgan on the occasion of the release of <i>The Pentagram Child</i> which is Book 5 of 8 - not including the anticipated spin offs! </p>"; 

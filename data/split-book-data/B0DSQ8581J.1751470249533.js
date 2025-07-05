@@ -1,0 +1,1 @@
+window.bookSummaryJSON = "<p><b><i>From Wall Street Journal best-selling author Giana Darling comes an MMF romance between an Italian chauffeur dreaming of stardom and the power couple who offer him the deal of a lifetime... </i></b><br> </p>"; 

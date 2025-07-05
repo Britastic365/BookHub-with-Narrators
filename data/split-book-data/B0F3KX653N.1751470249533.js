@@ -1,0 +1,1 @@
+window.bookSummaryJSON = "In the second book of the Pixie Pearson series, Pixie and Harley are happy in their warehouse, but boys on bikes and royal greyhounds cause trouble. Then Jaco, Harley's father, tries to shake their house down."; 
