@@ -8,7 +8,8 @@ const z={
       collectionSource:"pageCollection",
       listReady:!1,
       pageTitle:"Narrators",
-      pageSubTitle:null
+      pageSubTitle:null,
+      subPageSource: null
     };
   },
   computed:{
@@ -18,6 +19,10 @@ const z={
     galleryStyle:function(){
       return this.$store.state.searchOptOpenHeight?{overflow:"hidden",height:this.$store.state.searchOptOpenHeight-this.$refs.wrapper.offsetTop*2+"px"}:!1;
     }
+  },
+  mounted() {
+    this.subPageSource = this.$store.state.subPageSource;
+    this.makeCollection();
   },
   methods:{
     makeCollection:function(){
@@ -72,37 +77,6 @@ const z={
       };
       this.$setListRenderingOpts(s);
     }
-  },
-  render(h){
-    const f = this,
-          g = f.$store.getters.collection;
-
-    return f.listReady ? h("div", { attrs: { id: "ale-narrators" }, class: "box-layout-wrapper", style: f.optionsOpenMargin, ref: "wrapper" }, [
-      h(v, { props: { collectionSource: f.collectionSource } }),
-      h("div", { class: "page-content", style: f.galleryStyle },
-        g.map(function(o) {
-          return h(k, { class: "single-box", attrs: { "data-name": o.name }, key: "narrators:" + o.name }, [
-            h("router-link", {
-              attrs: {
-                to: {
-                  name: "narrator",
-                  params: { narrator: o.url },
-                  query: { subPageSource: f.subPageSource.name }
-                }
-              }
-            }, [
-              h("h2", [
-                o.name,
-                o.popular ? h("span", { class: "popular-star" }, "⭐") : null
-              ]),
-              o.books && o.books.length ? h("div", { class: "books-total", directives: [{ name: "tippy", value: { placement: "right" } }] }, [
-                o.books.length
-              ]) : null
-            ])
-          ]);
-        })
-      )
-    ]) : null;
   }
 };
 
