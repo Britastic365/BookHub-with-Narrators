@@ -85,7 +85,7 @@ function D(r,s,a,e,t,n){
       p("div",{style:m(n.galleryStyle),class:"page-content"},[
         (i(!0),
         c(N,null,
-          O(r.$store.getters.collection,(o,L)=>(
+          O(r.$store.getters.filteredCollection,(o,L)=>(
             i(),
             R(f,{class:"single-box","data-name":o.name,key:"narrators:"+o.name},{
               default:h(()=>[
