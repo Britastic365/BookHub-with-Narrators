@@ -3,14 +3,13 @@ import{_ as k}from"./gallery-lazy.9238549d.js";import{a as v}from"./gallery-sear
 const z={
   name:"aleNarrators",
   mixins:[S,x],
-  components: { SearchControls: v, GalleryItem: k },
   data:function(){
     return{
       collectionSource:"pageCollection",
       listReady:!1,
       pageTitle:"Narrators",
       pageSubTitle:null,
-      subPageSource: null
+      subPageSource:null
     };
   },
   computed:{
@@ -79,35 +78,33 @@ const z={
       this.$setListRenderingOpts(s);
     }
   },
-  template: `
-    <div id="ale-narrators" class="box-layout-wrapper" :style="optionsOpenMargin" ref="wrapper">
-      <SearchControls :collectionSource="collectionSource" />
-      <div class="page-content" :style="galleryStyle">
-        <GalleryItem
-          v-for="item in $store.getters.collection"
-          :key="item.name"
-          class="single-box"
-          :data-name="item.name"
-        >
-          <router-link
-            :to="{
-              name: 'narrator',
-              params: { narrator: item.url },
-              query: { subPageSource: subPageSource.name }
-            }"
-          >
-            <h2>
-              {{ item.name }}
-              <span v-if="item.popular" class="popular-star">⭐</span>
-            </h2>
-            <div v-if="item.books && item.books.length" class="books-total" v-tippy="{ placement: 'right' }">
-              {{ item.books.length }}
-            </div>
-          </router-link>
-        </GalleryItem>
-      </div>
-    </div>
-  `
+  render(h) {
+    return h("div", { attrs: { id: "ale-narrators" }, class: "box-layout-wrapper", style: this.optionsOpenMargin, ref: "wrapper" }, [
+      h(v, { props: { collectionSource: this.collectionSource } }),
+      h("div", { class: "page-content", style: this.galleryStyle },
+        this.$store.getters.collection.map((item) =>
+          h(k, { key: item.name, class: "single-box", attrs: { "data-name": item.name } }, [
+            h("router-link", {
+              attrs: {
+                to: {
+                  name: "narrator",
+                  params: { narrator: item.url },
+                  query: { subPageSource: this.subPageSource ? this.subPageSource.name : "" }
+                }
+              }
+            }, [
+              h("h2", [
+                this._v(item.name),
+                item.popular ? h("span", { class: "popular-star" }, [this._v("⭐")]) : null
+              ]),
+              item.books && item.books.length ? h("div", { class: "books-total" }, [this._v(item.books.length.toString())]) : null
+            ])
+          ])
+        )
+      )
+    ]);
+  }
 };
 
 export default z;
+
