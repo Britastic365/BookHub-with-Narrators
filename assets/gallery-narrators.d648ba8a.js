@@ -59,8 +59,8 @@ const z={
         ],
         filter:[
           {active:!1,type:"filterExtras",label:"Number of books",key:"books",range:[1,function(){let a=_.get(r.$store.state,r.collectionSource),e=_.maxBy(a,function(t){if(t.books)return t.books.length});return e?e.books.length:1}()],rangeMinDist:0,rangeSuffix:"",rangeMin:function(){return 1},rangeMax:function(){let a=_.get(r.$store.state,r.collectionSource),e=_.maxBy(a,function(t){if(t.books)return t.books.length});return e?e.books.length:1},condition:function(a){if(a.books){let e=this.range[0],t=this.range[1];return a.books.length>=e&&a.books.length<=t}}},
-          {active:!0,type:"select",label:"Include Only",key:"gender",options:["m","f"],labels:{"m":"Male narrators","f":"Female narrators"},condition:function(a){return this.value==="" || !a.gender ? false : a.gender===this.value}},
-          {active:!0,type:"checkbox",label:"Popular narrators only",key:"popular",condition:function(a){return !!a.popular}}
+          {active:!0,type:"select",label:"Include Only",key:"gender", value: "", options:["","m","f"], labels:{"":"Any","m":"Male narrators","f":"Female narrators"}, condition:function(a){return this.value === "" || !a.gender ? this.value === "" : a.gender === this.value}},
+          {active:!0,type:"checkbox",label:"Popular narrators only",key:"popular", value: false, condition:function(a){return this.value === true ? a.popular === true : true}}
         ],
         sort:[
           {active:!1,key:"randomize",label:"Randomize",type:"sortExtras",tippy:"Ignores sorting and randomizes instead unless there's an active search."},
@@ -93,7 +93,7 @@ function D(r,s,a,e,t,n){
                   default:h(()=>[
                     p("h2",null,[
                       y(o.name),
-                      o.popular ? p("span", { class: "popular-star" }, "⭐") : d("",!0)
+                      o.popular?p("span",{class:"popular-star"},"⭐"):d("",!0)
                     ]),
                     o.books&&o.books.length?B((i(),c("div",M,[T(y(o.books.length),1)])),[[b,{placement:"right"}]]):d("",!0)
                   ]),
