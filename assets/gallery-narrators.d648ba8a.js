@@ -10,6 +10,7 @@ const z={
       pageTitle:"Narrators",
       pageSubTitle:null,
       filtersOpen:true,
+      subPageSource: { name: "narrators", collection: [] },
       filters:{
         gender:"",
         popular:!1
@@ -27,6 +28,7 @@ const z={
   methods:{
     makeCollection:function(){
       const r=this;let s=[],a=1;
+      console.log("SubPageSource used in Narrators:", r.subPageSource);
       _.eachRight(r.subPageSource.collection,function(e){
         e.narrators&&_.each(e.narrators,function(t){
           if(t.name){
@@ -83,7 +85,7 @@ M={key:0,class:"books-total",content:"Total number of books with this narrator."
 
 function D(r,s,a,e,t,n){
   const l=v,g=$("router-link"),f=k,b=C("tippy");
-  return r.listReady?(i(),c("div",{key:0,id:"ale-narrators",class:"box-layout-wrapper",style:m(n.optionsOpenMargin),ref:"wrapper"},[u(l,{collectionSource:r.collectionSource,filters:r.filters,filtersOpen:r.filtersOpen},null,8,["collectionSource","filters","filtersOpen"]),p("div",{style:m(n.galleryStyle),class:"page-content"},[(i(!0),c(N,null,O(r.$store.getters.collection,(o,L)=>(i(),R(f,{class:"single-box","data-name":o.name,key:"narrators:"+o.name},{default:h(()=>[u(g,{to:{name:"narrator",params:{narrator:o.url},query:{subPageSource:r.subPageSource.name}}},{default:h(()=>[p("h2",null,[y(o.name),o.popular?p("span",{class:"popular-star"},"⭐"):d("",!0)]),o.books&&o.books.length?B((i(),c("div",M,[T(y(o.books.length),1)])),[[b,{placement:"right"}]]):d("",!0)]),_:2},1032,["to"])]),_:2},1032,["data-name"])))),128))],4)],4)):d("",!0)}
+  return r.listReady?(i(),c("div",{key:0,id:"ale-narrators",class:"box-layout-wrapper",style:m(n.optionsOpenMargin),ref:"wrapper"},[u(l,{collectionSource:r.collectionSource,filters:r.filters,filtersOpen:r.filtersOpen},null,8,["collectionSource","filters","filtersOpen"]),p("div",{style:m(n.galleryStyle),class:"page-content"},[(i(!0),c(N,null,O(r.$store.getters.collection,(o,L)=>(i(),R(f,{class:"single-box","data-name":o.name,key:"narrators:"+o.name},{default:h(()=>[u(g,{to:{name:"narrator",params:{narrator:o.url},query:{subPageSource:r.subPageSource?.name||"narrators"}}},{default:h(()=>[p("h2",null,[y(o.name),o.popular?p("span",{class:"popular-star"},"⭐"):d("",!0)]),o.books&&o.books.length?B((i(),c("div",M,[T(y(o.books.length),1)])),[[b,{placement:"right"}]]):d("",!0)]),_:2},1032,["to"])]),_:2},1032,["data-name"])))),128))],4)],4)):d("",!0)}
 
 const W=w(z,[["render",D],["__scopeId","data-v-a99a4676"]]);
 export{W as default};
