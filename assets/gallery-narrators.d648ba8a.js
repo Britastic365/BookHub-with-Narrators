@@ -3,6 +3,7 @@ import{_ as k}from"./gallery-lazy.9238549d.js";import{a as v}from"./gallery-sear
 const z={
   name:"aleNarrators",
   mixins:[S,x],
+  components: { SearchControls: v, GalleryItem: k },
   data:function(){
     return{
       collectionSource:"pageCollection",
@@ -77,7 +78,36 @@ const z={
       };
       this.$setListRenderingOpts(s);
     }
-  }
+  },
+  template: `
+    <div id="ale-narrators" class="box-layout-wrapper" :style="optionsOpenMargin" ref="wrapper">
+      <SearchControls :collectionSource="collectionSource" />
+      <div class="page-content" :style="galleryStyle">
+        <GalleryItem
+          v-for="item in $store.getters.collection"
+          :key="item.name"
+          class="single-box"
+          :data-name="item.name"
+        >
+          <router-link
+            :to="{
+              name: 'narrator',
+              params: { narrator: item.url },
+              query: { subPageSource: subPageSource.name }
+            }"
+          >
+            <h2>
+              {{ item.name }}
+              <span v-if="item.popular" class="popular-star">⭐</span>
+            </h2>
+            <div v-if="item.books && item.books.length" class="books-total" v-tippy="{ placement: 'right' }">
+              {{ item.books.length }}
+            </div>
+          </router-link>
+        </GalleryItem>
+      </div>
+    </div>
+  `
 };
 
 export default z;
